@@ -44,15 +44,17 @@ public class Environment implements MDP<GameState, Integer, DiscreteSpace> {
         // Find action based on action index
         final Action actionToTake = Action.getActionByIndex(actionIndex);
 
+        // Get reward
+        double reward = game.calculateRewardForActionToTake(actionToTake);
+
         // Change direction based on action and move the snake in that direction
         game.changeDirection(actionToTake);
         game.move();
 
+        reward += game.calculateRewardForActionToTake(actionToTake) * 0.1;
+
         // If you want to see what is the snake doing while training increase this value
         NetworkUtil.waitMs(0);
-
-        // Get reward
-        double reward = game.calculateRewardForActionToTake(actionToTake);
 
         // Get current state
         final GameState observation = game.buildStateObservation();

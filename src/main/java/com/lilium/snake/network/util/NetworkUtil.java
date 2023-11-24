@@ -38,7 +38,7 @@ public final class NetworkUtil {
                 .batchSize(128)             // 更新样本量间隔
                 .targetDqnUpdateFreq(500)   // 保存神经网络间隔（步数%）
                 .updateStart(10)            // 更新样本量起始间隔
-                .rewardFactor(0.01)         // 奖励系数
+                .rewardFactor(0.1)         // 奖励系数
                 .gamma(0.99)
                 .errorClamp(1.0)
                 .minEpsilon(0.1f)

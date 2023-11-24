@@ -6,6 +6,7 @@ import com.lilium.snake.network.Environment;
 import com.lilium.snake.network.GameState;
 import com.lilium.snake.network.util.GameStateUtil;
 import com.lilium.snake.network.util.NetworkUtil;
+import org.apache.commons.math3.analysis.function.Log;
 import org.deeplearning4j.nn.multilayer.MultiLayerNetwork;
 import org.deeplearning4j.rl4j.learning.sync.qlearning.discrete.QLearningDiscreteDense;
 import org.nd4j.linalg.api.ndarray.INDArray;
@@ -34,6 +35,7 @@ public class SnakeDl4j extends JFrame {
             final String randomNetworkName = "network-" + System.currentTimeMillis() + ".zip";
 //            final String randomNetworkName = "network-1624729771113.zip";
             // Create our training environment
+            LOG.info("randomNetworkName -> {}", randomNetworkName);
             final Environment mdp = new Environment(game);
             final QLearningDiscreteDense<GameState> dql = new QLearningDiscreteDense<>(
                     mdp,
