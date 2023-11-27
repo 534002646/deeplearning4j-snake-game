@@ -9,6 +9,8 @@ import com.lilium.snake.network.util.NetworkUtil;
 import org.apache.commons.math3.analysis.function.Log;
 import org.deeplearning4j.nn.multilayer.MultiLayerNetwork;
 import org.deeplearning4j.rl4j.learning.sync.qlearning.discrete.QLearningDiscreteDense;
+import org.deeplearning4j.rl4j.network.dqn.DQN;
+import org.deeplearning4j.rl4j.network.dqn.DQNFactoryStdDense;
 import org.nd4j.linalg.api.ndarray.INDArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,16 +34,22 @@ public class SnakeDl4j extends JFrame {
 
         final Thread thread = new Thread(() -> {
             // Give a name to the network we are about to train
-            final String randomNetworkName = "network-" + System.currentTimeMillis() + ".zip";
-//            final String randomNetworkName = "network-1624729771113.zip";
+//            final String randomNetworkName = "network-" + System.currentTimeMillis() + ".zip";
+            final String randomNetworkName = "network-1624729771113.zip";
             // Create our training environment
             LOG.info("randomNetworkName -> {}", randomNetworkName);
             final Environment mdp = new Environment(game);
-            final QLearningDiscreteDense<GameState> dql = new QLearningDiscreteDense<>(
-                    mdp,
-                    NetworkUtil.buildDQNFactory(),
-                    NetworkUtil.buildConfig()
-            );
+            final QLearningDiscreteDense<GameState> dql;
+            try {
+                dql = new QLearningDiscreteDense<>(
+                        mdp,
+                        DQN.load(randomNetworkName),
+//                        NetworkUtil.buildDQNFactory(),
+                        NetworkUtil.buildConfig()
+                );
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
 
             // Start the training
             dql.train();
@@ -53,11 +61,11 @@ public class SnakeDl4j extends JFrame {
             } catch (IOException e) {
                 LOG.error(e.getMessage(), e);
             }
-            // Reset the game
-            game.initializeGame();
-
-            // Evaluate just trained network
-            evaluateNetwork(game, randomNetworkName);
+//            // Reset the game
+//            game.initializeGame();
+//
+//            // Evaluate just trained network
+//            evaluateNetwork(game, randomNetworkName);
         });
 
         thread.start();

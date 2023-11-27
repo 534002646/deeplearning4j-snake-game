@@ -32,13 +32,13 @@ public final class NetworkUtil {
     public static QLearningConfiguration buildConfig() {
         return QLearningConfiguration.builder()
                 .seed(123L)
-                .maxStep(30000)             // 最大训练步数
+                .maxStep(15000)             // 最大训练步数
                 .maxEpochStep(200)          // 最大获取样本步数
                 .expRepMaxSize(150000)      // 样本总数量
                 .batchSize(128)             // 更新样本量间隔
                 .targetDqnUpdateFreq(500)   // 保存神经网络间隔（步数%）
                 .updateStart(10)            // 更新样本量起始间隔
-                .rewardFactor(0.1)         // 奖励系数
+                .rewardFactor(0.1)          // 奖励系数
                 .gamma(0.99)
                 .errorClamp(1.0)
                 .minEpsilon(0.1f)

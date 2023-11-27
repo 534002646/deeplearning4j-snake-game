@@ -51,8 +51,6 @@ public class Environment implements MDP<GameState, Integer, DiscreteSpace> {
         game.changeDirection(actionToTake);
         game.move();
 
-        reward += game.calculateRewardForActionToTake(actionToTake) * 0.1;
-
         // If you want to see what is the snake doing while training increase this value
         NetworkUtil.waitMs(0);
 
