@@ -14,18 +14,18 @@ test {
 }
 
 dependencies {
-    implementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.6.2'
-//    implementation group: 'org.deeplearning4j', name: 'deeplearning4j-nn', version: '1.0.0-beta7'
-//    implementation group: 'org.deeplearning4j', name: 'rl4j', version: '1.0.0-beta7'
-//    implementation group: 'org.deeplearning4j', name: 'rl4j-api', version: '1.0.0-beta7'
-    implementation group: 'org.deeplearning4j', name: 'rl4j-core', version: '1.0.0-beta7'
-    implementation group: 'org.nd4j', name: 'nd4j-backends', version: '1.0.0-beta7'
-    implementation group: 'org.nd4j', name: 'nd4j-cuda-10.1', version: '1.0.0-beta7'
-    implementation group: 'org.nd4j', name: 'nd4j-native-platform', version: '1.0.0-beta7'
+    implementation group: 'org.deeplearning4j', name: 'deeplearning4j-ui', version: '1.0.0-M2.1'
+    implementation group: 'org.slf4j', name: 'slf4j-simple', version: '2.0.9'
+    implementation group: 'org.deeplearning4j', name: 'rl4j-core', version: '1.0.0-M1.1'
+    implementation group: 'org.nd4j', name: 'nd4j-backends', version: '1.0.0-M2.1'
+    implementation group: 'org.nd4j', name: 'nd4j-cuda-11.6', version: '1.0.0-M2.1'
+    implementation group: 'org.nd4j', name: 'nd4j-cuda-11.6-platform', version: '1.0.0-M2.1'
+    implementation group: 'org.nd4j', name: 'nd4j-native-platform', version: '1.0.0-M2.1'
+    implementation group: 'org.deeplearning4j', name: 'deeplearning4j-core', version: '1.0.0-M2.1'
 
-    testImplementation group: 'junit', name: 'junit', version: '4.12'
-    testImplementation('org.junit.jupiter:junit-jupiter:5.5.2')
-    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.17.2'
+//    testImplementation group: 'junit', name: 'junit', version: '4.12'
+//    testImplementation('org.junit.jupiter:junit-jupiter:5.5.2')
+//    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.17.2'
 
 }
 

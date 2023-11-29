@@ -7,10 +7,15 @@ import com.lilium.snake.network.GameState;
 import com.lilium.snake.network.util.GameStateUtil;
 import com.lilium.snake.network.util.NetworkUtil;
 import org.apache.commons.math3.analysis.function.Log;
+import org.bytedeco.javacpp.Loader;
+import org.deeplearning4j.core.storage.StatsStorage;
 import org.deeplearning4j.nn.multilayer.MultiLayerNetwork;
 import org.deeplearning4j.rl4j.learning.sync.qlearning.discrete.QLearningDiscreteDense;
 import org.deeplearning4j.rl4j.network.dqn.DQN;
 import org.deeplearning4j.rl4j.network.dqn.DQNFactoryStdDense;
+import org.deeplearning4j.ui.api.UIServer;
+import org.deeplearning4j.ui.model.stats.StatsListener;
+import org.deeplearning4j.ui.model.storage.InMemoryStatsStorage;
 import org.nd4j.linalg.api.ndarray.INDArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,13 +46,16 @@ public class SnakeDl4j extends JFrame {
             final Environment mdp = new Environment(game);
             final QLearningDiscreteDense<GameState> dql;
             try {
+                UIServer uiServer = UIServer.getInstance();
+                StatsStorage statsStorage = new InMemoryStatsStorage();
+                uiServer.attach(statsStorage);
                 dql = new QLearningDiscreteDense<>(
                         mdp,
-                        DQN.load(randomNetworkName),
-//                        NetworkUtil.buildDQNFactory(),
+//                        DQN.load(randomNetworkName),
+                        NetworkUtil.buildDQNFactory(new StatsListener(statsStorage)),
                         NetworkUtil.buildConfig()
                 );
-            } catch (IOException e) {
+            } catch (Exception e) {
                 throw new RuntimeException(e);
             }
 
@@ -67,7 +75,6 @@ public class SnakeDl4j extends JFrame {
 //            // Evaluate just trained network
 //            evaluateNetwork(game, randomNetworkName);
         });
-
         thread.start();
     }
 

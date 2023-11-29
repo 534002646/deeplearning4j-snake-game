@@ -87,8 +87,7 @@ public final class GameStateUtil {
         return maxAt;
     }
 
-    private static boolean isHeadUnableToMoveToNextPosition(final Position nextPosition,
-                                                            final Position[] snakePosition) {
+    public static boolean isHeadUnableToMoveToNextPosition(final Position nextPosition, final Position[] snakePosition) {
         // Snake cant move to that position if it is outside the game bounds or if its body is in the way
         return nextPosition.isOutsideTheGameBounds() || Arrays.asList(snakePosition).contains(nextPosition);
     }

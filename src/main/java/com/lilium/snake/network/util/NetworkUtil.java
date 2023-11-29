@@ -1,8 +1,10 @@
 package com.lilium.snake.network.util;
 import org.deeplearning4j.nn.multilayer.MultiLayerNetwork;
+import org.deeplearning4j.optimize.api.TrainingListener;
 import org.deeplearning4j.rl4j.learning.configuration.QLearningConfiguration;
 import org.deeplearning4j.rl4j.network.configuration.DQNDenseNetworkConfiguration;
 import org.deeplearning4j.rl4j.network.dqn.DQNFactoryStdDense;
+import org.nd4j.linalg.learning.config.Adam;
 import org.nd4j.linalg.learning.config.RmsProp;
 
 import java.io.File;
@@ -38,7 +40,7 @@ public final class NetworkUtil {
                 .batchSize(128)             // 更新样本量间隔
                 .targetDqnUpdateFreq(500)   // 保存神经网络间隔（步数%）
                 .updateStart(10)            // 更新样本量起始间隔
-                .rewardFactor(0.1)          // 奖励系数
+                .rewardFactor(0.01)          // 奖励系数
                 .gamma(0.99)
                 .errorClamp(1.0)
                 .minEpsilon(0.1f)
@@ -47,12 +49,15 @@ public final class NetworkUtil {
                 .build();
     }
 
-    public static DQNFactoryStdDense buildDQNFactory() {
+    public static DQNFactoryStdDense buildDQNFactory(TrainingListener listener) {
         final DQNDenseNetworkConfiguration build = DQNDenseNetworkConfiguration.builder()
                 .l2(0.001)
-                .updater(new RmsProp(0.000025))
-                .numHiddenNodes(300)
+//                .updater(new RmsProp(0.000025))
+                .updater(new Adam())
+                .numHiddenNodes(100)
                 .numLayers(2)
+//                .learningRate(1e-2)
+                .listener(listener)
                 .build();
 
         return new DQNFactoryStdDense(build);

@@ -74,7 +74,7 @@ public class Game extends JPanel implements ActionListener {
         }
 
         if (!inGame) {
-            LOG.debug("Game is over :(");
+            LOG.info("Game is over :(");
         }
 
         repaint();
@@ -195,6 +195,30 @@ public class Game extends JPanel implements ActionListener {
         });
     }
 
+
+//    public GameState buildStateObservation() {
+//        final Position head = snakePosition[0];
+//        final Position nextPosition1 = PositionUtil.getNextPosition(head, Direction.UP);
+//        final Position nextPosition2 = PositionUtil.getNextPosition(head, Direction.DOWN);
+//        final Position nextPosition3 = PositionUtil.getNextPosition(head, Direction.LEFT);
+//        final Position nextPosition4 = PositionUtil.getNextPosition(head, Direction.RIGHT);
+//
+//        return new GameState(new double[] {
+//                GameStateUtil.isHeadUnableToMoveToNextPosition(nextPosition1, snakePosition) ? 1 : 0,
+//                GameStateUtil.isHeadUnableToMoveToNextPosition(nextPosition2, snakePosition) ? 1 : 0,
+//                GameStateUtil.isHeadUnableToMoveToNextPosition(nextPosition3, snakePosition) ? 1 : 0,
+//                GameStateUtil.isHeadUnableToMoveToNextPosition(nextPosition4, snakePosition) ? 1 : 0,
+//                currentDirection == Direction.UP ? 1 : 0,
+//                currentDirection == Direction.DOWN ? 1 : 0,
+//                currentDirection == Direction.LEFT ? 1 : 0,
+//                currentDirection == Direction.RIGHT ? 1 : 0,
+//                head.getY() > foodPosition.getY() ? 1 : 0,
+//                head.getX() < foodPosition.getX() ? 1 : 0,
+//                head.getY() < foodPosition.getY() ? 1 : 0,
+//                head.getX() < foodPosition.getX() ? 1 : 0
+//        });
+//    }
+
     /**
      * Used to calculate the reward for action that was taken.
      *
@@ -232,7 +256,7 @@ public class Game extends JPanel implements ActionListener {
         }
 
         final Position headPosition = getHeadPosition();
-        final Position[] observations = new Position[NetworkUtil.NUMBER_OF_INPUTS];
+        final Position[] observations = new Position[4];
         // If we decide to have more inputs we need to modify the code to get more then just next position
         observations[0] = PositionUtil.getNextPosition(headPosition, Direction.UP);
         observations[1] = PositionUtil.getNextPosition(headPosition, Direction.RIGHT);
