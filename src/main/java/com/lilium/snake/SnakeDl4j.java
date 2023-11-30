@@ -52,7 +52,8 @@ public class SnakeDl4j extends JFrame {
                 dql = new QLearningDiscreteDense<>(
                         mdp,
 //                        DQN.load(randomNetworkName),
-                        NetworkUtil.buildDQNFactory(new StatsListener(statsStorage)),
+//                        NetworkUtil.buildDQNFactory(new StatsListener(statsStorage)),
+                        NetworkUtil.buildDQN(mdp.getObservationSpace().getShape(), mdp.getActionSpace().getSize(), new StatsListener(statsStorage)),
                         NetworkUtil.buildConfig()
                 );
             } catch (Exception e) {

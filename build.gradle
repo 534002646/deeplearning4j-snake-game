@@ -17,11 +17,11 @@ dependencies {
     implementation group: 'org.deeplearning4j', name: 'deeplearning4j-ui', version: '1.0.0-M2.1'
     implementation group: 'org.slf4j', name: 'slf4j-simple', version: '2.0.9'
     implementation group: 'org.deeplearning4j', name: 'rl4j-core', version: '1.0.0-M1.1'
-    implementation group: 'org.nd4j', name: 'nd4j-backends', version: '1.0.0-M2.1'
+//    implementation group: 'org.nd4j', name: 'nd4j-backends', version: '1.0.0-M2.1'
     implementation group: 'org.nd4j', name: 'nd4j-cuda-11.6', version: '1.0.0-M2.1'
     implementation group: 'org.nd4j', name: 'nd4j-cuda-11.6-platform', version: '1.0.0-M2.1'
-    implementation group: 'org.nd4j', name: 'nd4j-native-platform', version: '1.0.0-M2.1'
-    implementation group: 'org.deeplearning4j', name: 'deeplearning4j-core', version: '1.0.0-M2.1'
+//    implementation group: 'org.nd4j', name: 'nd4j-native-platform', version: '1.0.0-M2.1'
+//    implementation group: 'org.deeplearning4j', name: 'deeplearning4j-core', version: '1.0.0-M2.1'
 
 //    testImplementation group: 'junit', name: 'junit', version: '4.12'
 //    testImplementation('org.junit.jupiter:junit-jupiter:5.5.2')

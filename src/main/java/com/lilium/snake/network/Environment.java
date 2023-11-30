@@ -1,7 +1,6 @@
 package com.lilium.snake.network;
 
 import com.lilium.snake.game.Game;
-import com.lilium.snake.network.util.NetworkUtil;
 import org.deeplearning4j.gym.StepReply;
 import org.deeplearning4j.rl4j.mdp.MDP;
 import org.deeplearning4j.rl4j.space.DiscreteSpace;
@@ -44,12 +43,12 @@ public class Environment implements MDP<GameState, Integer, DiscreteSpace> {
         // Find action based on action index
         final Action actionToTake = Action.getActionByIndex(actionIndex);
 
+        // Get reward
+        double reward = game.calculateRewardForActionToTake(actionToTake);
+
         // Change direction based on action and move the snake in that direction
         game.changeDirection(actionToTake);
         game.move();
-
-        // Get reward
-        double reward = game.calculateRewardForActionToTake(actionToTake);
 
         // If you want to see what is the snake doing while training increase this value
 //        NetworkUtil.waitMs(0);

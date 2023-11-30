@@ -55,9 +55,9 @@ public final class RewardUtil {
         }
 
         if (PositionUtil.isPositionCloserToFoodPosition(nextPosition, foodPosition, nextDirection)) {
-            return 1.0;
+            return 10.0;
         }
 
-        return -1.0;
+        return -10.0;
     }
 }
